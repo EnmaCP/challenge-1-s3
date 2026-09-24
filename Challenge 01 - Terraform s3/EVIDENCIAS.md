@@ -1,0 +1,26 @@
+1 try { . "c:\Users\Enma\AppData\Local\Programs\Microsoft VS Code\7debcd0e2a\resources\app\out\vs\workbench\con...
+   2 $env:AWS_ACCESS_KEY_ID="ASIAX5GRLARZ4TEEZKUQ"...                                                                
+   3 aws sts get-caller-identity --region us-east-1                                                                  
+   4 terraform init                                                                                                  
+   5 terraform init                                                                                                  
+   6 terraform apply                                                                                                 
+   7 aws s3 ls                                                                                                       
+   8 aws s3 website s3 ://terraform-s3-challenge/ --index-document index.html                                        
+   9 aws s3 website s3 ://terraform-s3-challenge/ --index-document index.html                                        
+  10 terraform plan                                                                                                  
+  11 $env:AWS_ACCESS_KEY_ID="ASIAX5GRLARZ4TEEZKUQ"...                                                                
+  12 aws sts get-caller-identity --region us-east-1                                                                  
+  13 terraform init                                                                                                  
+  14 terraform apply                                                                                                 
+  15 aws s3api put-public-access-block --bucket terraform-s3-challenge --public-access-block-configuration "BlockP...
+  16 terraform apply                                                                                                 
+  17 $env:AWS_ACCESS_KEY_ID="ASIAX5GRLARZ4TEEZKUQ"...                                                                
+  18 terraform init                                                                                                  
+  19 terraform apply                                                                                                 
+  20 aws s3api put-bucket-policy --bucket terraform-s3-challenge --policy file://policy.json                         
+  21 terraform apply -refresh=false -auto-approve                                                                    
+  22 # 1. Elimina el archivo de bloqueo para permitir cambiar de versión...                                          
+  23 Remove-Item -Recurse -Force .terraform -ErrorAction SilentlyContinue...                                         
+  24 terraform init -upgrade...                                                                                      
+  25 aws s3 sync . s3//terraform-s3-challenge/                                                                       
+  26 aws s3 sync . s3://challenge-1-enma/ --exclude "*" --include "index.html"                                       

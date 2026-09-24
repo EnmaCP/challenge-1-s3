@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Resorts & Hoteles de Lujo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a2e3b;
+            --primary-light: #2c4a5e;
+            --accent: #c5a059;
+            --accent-hover: #b08d4b;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 5%;
+            background: rgba(26, 46, 59, 0.92);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .btn-nav {
+            background-color: var(--accent);
+            color: var(--white) !important;
+            padding: 0.6rem 1.4rem;
+            border-radius: 30px;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 14px rgba(197, 160, 89, 0.35);
+        }
+
+        .btn-nav:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1.5rem;
+            background: linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.7)), 
+                        url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            color: var(--white);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            background: rgba(197, 160, 89, 0.25);
+            border: 1px solid var(--accent);
+            border-radius: 50px;
+            color: #fce7b8;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.15;
+            max-width: 900px;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 650px;
+            margin-bottom: 2.5rem;
+            color: #cbd5e1;
+            font-weight: 300;
+        }
+
+        /* Booking Bar */
+        .booking-bar {
+            background: var(--white);
+            padding: 1.2rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: center;
+            max-width: 1050px;
+            width: 100%;
+            color: var(--text-dark);
+            margin-top: 1rem;
+        }
+
+        .booking-field {
+            flex: 1;
+            min-width: 160px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .booking-field label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .booking-field select, 
+        .booking-field input {
+            width: 100%;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 0.6rem 0.8rem;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .booking-field select:focus, 
+        .booking-field input:focus {
+            border-color: var(--accent);
+        }
+
+        .btn-search {
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            padding: 0.85rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-search:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Section Commons */
+        .section {
+            padding: 6rem 5%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-subtitle {
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+        }
+
+        /* Hotel Cards */
+        .hotel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .hotel-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .hotel-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .hotel-card:hover .card-img-wrapper img {
+            transform: scale(1.08);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.35rem 0.8rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-body {
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-location {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 0.4rem;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 0.6rem;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #f59e0b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .rating span {
+            color: var(--text-light);
+            font-size: 0.8rem;
+            margin-left: 6px;
+        }
+
+        .amenities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .amenity-tag {
+            background: #f1f5f9;
+            color: var(--text-light);
+            font-size: 0.8rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .price small {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .btn-card {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            padding: 0.5rem 1.1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-card:hover {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        /* Features Section */
+        .features-bg {
+            background-color: #f1f5f9;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-box {
+            background: var(--white);
+            padding: 2.5rem 1.75rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: #fef8ee;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .feature-box h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+        }
+
+        .feature-box p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Banner CTA */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, #0f172a 100%);
+            color: var(--white);
+            border-radius: 20px;
+            padding: 4rem 3rem;
+            text-align: center;
+            margin: 3rem auto;
+            max-width: 1200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-banner h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-banner p {
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-size: 1.05rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: #94a3b8;
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
+            max-width: 1300px;
+            margin: 0 auto 3rem;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-col ul li a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.85rem;
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #10b981;
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(150%);
+            transition: transform 0.4s ease;
+            z-index: 2000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 1.5rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .booking-bar {
+                flex-direction: column;
+                padding: 1.5rem;
+            }
+            .booking-field {
+                width: 100%;
+            }
+            .btn-search {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navegación -->
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <i class="fa-solid fa-crown" style="color: var(--accent);"></i>
+            AURA <span>HOTELS</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#hoteles">Nuestros Hoteles</a></li>
+            <li><a href="#servicios">Servicios Exclusivos</a></li>
+            <li><a href="#experiencias">Experiencias</a></li>
+            <li><a href="#reservas" class="btn-nav">Reservar Ahora</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="inicio">
+        <span class="hero-badge">Excelencia & Hospitalidad Cinco Estrellas</span>
+        <h1>El Refugio Perfecto Para Tus Mejores Momentos</h1>
+        <p>Descubre destinos paradisíacos, arquitectura de vanguardia y experiencias diseñadas para superar todas tus expectativas.</p>
+        
+        <!-- Barra de Reservas -->
+        <div class="booking-bar" id="reservas">
+            <div class="booking-field">
+                <label><i class="fa-solid fa-location-dot"></i> Destino</label>
+                <select id="destination">
+                    <option value="cancun">Cancún, México</option>
+                    <option value="mallorca">Mallorca, España</option>
+                    <option value="madrid">Madrid, España</option>
+                    <option value="santorini">Santorini, Grecia</option>
+                </select>
+            </div>
+            <div class="booking-field">
+                <label><i class="fa-solid fa-calendar-days"></i> Llegada</label>
+                <input type="date" id="checkin">
+            </div>
+            <div class="booking-field">
+                <label><i class="fa-solid fa-calendar-days"></i> Salida</label>
+                <input type="date" id="checkout">
+            </div>
+            <div class="booking-field">
+                <label><i class="fa-solid fa-user-group"></i> Huéspedes</label>
+                <select id="guests">
+                    <option value="1">1 Adulto</option>
+                    <option value="2" selected>2 Adultos</option>
+                    <option value="3">2 Adultos + 1 Niño</option>
+                    <option value="4">Familia (4 Personas)</option>
+                </select>
+            </div>
+            <button class="btn-search" onclick="searchRooms()">
+                <i class="fa-solid fa-magnifying-glass"></i> Buscar
+            </button>
+        </div>
+    </header>
+
+    <!-- Catálogo de Hoteles -->
+    <section class="section" id="hoteles">
+        <div class="section-header">
+            <span class="section-subtitle">Selección Premium</span>
+            <h2 class="section-title">Destinos Destacados</h2>
+            <p class="section-desc">Selecciona entre nuestros resorts galardonados a nivel internacional y vive una estancia inolvidable.</p>
+        </div>
+
+        <div class="hotel-grid">
+            <!-- Hotel 1 -->
+            <article class="hotel-card">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" alt="Aura Grand Oasis">
+                    <span class="card-badge">Más Popular</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-location">
+                        <i class="fa-solid fa-location-dot"></i> Cancún, México
+                    </div>
+                    <h3 class="card-title">Aura Grand Oasis Resort</h3>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <span>5.0 (428 opiniones)</span>
+                    </div>
+                    <div class="amenities">
+                        <span class="amenity-tag"><i class="fa-solid fa-water-ladder"></i> Piscina Infinita</span>
+                        <span class="amenity-tag"><i class="fa-solid fa-spa"></i> Spa Termal</span>
+                        <span class="amenity-tag"><i class="fa-solid fa-utensils"></i> Todo Incluido</span>
+                    </div>
+                    <div class="card-footer">
+                        <div class="price">
+                            280€ <small>/ noche</small>
+                        </div>
+                        <button class="btn-card" onclick="bookHotel('Aura Grand Oasis')">Reservar</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Hotel 2 -->
+            <article class="hotel-card">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80" alt="Aura Mediterranean Palace">
+                    <span class="card-badge">Vistas al Mar</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-location">
+                        <i class="fa-solid fa-location-dot"></i> Mallorca, España
+                    </div>
+                    <h3 class="card-title">Aura Mediterranean Palace</h3>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <span>4.8 (312 opiniones)</span>
+                    </div>
+                    <div class="amenities">
+                        <span class="amenity-tag"><i class="fa-solid fa-umbrella-beach"></i> Playa Privada</span>
+                        <span class="amenity-tag"><i class="fa-solid fa-wifi"></i> Alta Velocidad</span>
+                        <span class="amenity-tag"><i class="fa-solid fa-cocktail"></i> Sky Bar</span>
+                    </div>
+                    <div class="card-footer">
+                        <div class="price">
+                            210€ <small>/ noche</small>
+                        </div>
+                        <button class="btn-card" onclick="bookHotel('Aura Mediterranean Palace')">Reservar</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Hotel 3 -->
+            <article class="hotel-card">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=800&q=80" alt="Aura Urban Sky">
+                    <span class="card-badge">Centro Ciudad</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-location">
+                        <i class="fa-solid fa-location-dot"></i> Gran Vía, Madrid
+                    </div>
+                    <h3 class="card-title">Aura Royal Urban Suite</h3>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <span>4.9 (518 opiniones)</span>
+                    </div>
+                    <div class="amenities">
+                        <span class="amenity-tag"><i class="fa-solid fa-dumbbell"></i> Gimnasio 24h</span>
+                        <span class="amenity-tag"><i class="fa-solid fa-champagne-glasses"></i> Rooftop</span>
+                        <span class="amenity-tag"><i class="fa-solid fa-bell-concierge"></i> Concierge</span>
+                    </div>
+                    <div class="card-footer">
+                        <div class="price">
+                            195€ <small>/ noche</small>
+                        </div>
+                        <button class="btn-card" onclick="bookHotel('Aura Royal Urban Suite')">Reservar</button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Servicios y Experiencias -->
+    <section class="features-bg" id="servicios">
+        <div class="section">
+            <div class="section-header">
+                <span class="section-subtitle">Por qué elegir Aura</span>
+                <h2 class="section-title">Comodidades de Primer Nivel</h2>
+                <p class="section-desc">Cuidamos cada detalle para ofrecerte confort absoluto, bienestar y recuerdos imborrables.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fa-solid fa-spa"></i></div>
+                    <h3>Wellness & Spas</h3>
+                    <p>Circuitos hidrotermales, masajes holísticos y tratamientos estéticos de autor.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fa-solid fa-utensils"></i></div>
+                    <h3>Alta Gastronomía</h3>
+                    <p>Restaurantes premiados con chefs de renombre mundial e ingredientes de proximidad.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>Garantía y Seguridad</h3>
+                    <p>Cancelación flexible sin cargos y protocolos máximos de privacidad y bioseguridad.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fa-solid fa-gem"></i></div>
+                    <h3>Club VIP</h3>
+                    <p>Acceso a traslados privados, check-in anticipado y servicio de mayordomo personal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner Promocional -->
+    <div class="section" id="experiencias">
+        <div class="cta-banner">
+            <h2>¿Listo para tus próximas vacaciones soñadas?</h2>
+            <p>Suscríbete a nuestro programa de fidelidad y obtén un 15% de descuento directo en tu primera estancia en cualquiera de nuestros resorts.</p>
+            <button class="btn-search" style="margin: 0 auto;" onclick="alert('¡Gracias por unirte al Club Aura! Código promocional: AURA15')">
+                <i class="fa-solid fa-ticket"></i> Obtener 15% Descuento
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="#" class="logo" style="margin-bottom: 1.2rem;">
+                    <i class="fa-solid fa-crown" style="color: var(--accent);"></i> AURA <span>HOTELS</span>
+                </a>
+                <p>Colección exclusiva de hoteles y resorts boutique en los mejores enclaves del mundo.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Destinos</h4>
+                <ul>
+                    <li><a href="#">Cancún & Riviera Maya</a></li>
+                    <li><a href="#">Islas Baleares</a></li>
+                    <li><a href="#">Madrid Histórico</a></li>
+                    <li><a href="#">Islas Griegas</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Información</h4>
+                <ul>
+                    <li><a href="#">Sobre Nosotros</a></li>
+                    <li><a href="#">Política de Cancelación</a></li>
+                    <li><a href="#">Sostenibilidad</a></li>
+                    <li><a href="#">Términos y Condiciones</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Atención al Cliente</h4>
+                <p><i class="fa-solid fa-phone"></i> +34 900 123 456</p>
+                <p><i class="fa-solid fa-envelope"></i> reservas@aurahotels.com</p>
+                <p><i class="fa-solid fa-clock"></i> 24 horas, 7 días a la semana</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Aura Resorts & Hoteles. Proyecto DevOps Challenge - Alojado en AWS S3 con Terraform.</p>
+        </div>
+    </footer>
+
+    <!-- Notificación Toast -->
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toast-text">Acción completada con éxito</span>
+    </div>
+
+    <script>
+        // Configurar fechas mínimas por defecto
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('checkin').value = today;
+        
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 3);
+        document.getElementById('checkout').value = tomorrow.toISOString().split('T')[0];
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-text').innerText = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3500);
+        }
+
+        function searchRooms() {
+            const dest = document.getElementById('destination').options[document.getElementById('destination').selectedIndex].text;
+            showToast(`Buscando disponibilidad para ${dest}...`);
+            document.getElementById('hoteles').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function bookHotel(hotelName) {
+            showToast(`¡Reserva iniciada para ${hotelName}!`);
+        }
+    </script>
+</body>
+</html>
